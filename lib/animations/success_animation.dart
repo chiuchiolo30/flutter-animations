@@ -46,10 +46,7 @@ class _SuccessAnimationState extends State<SuccessAnimation> {
               );
             },
             child: const Icon(Icons.check, size:  200, color: Colors.white),
-            ) : null,
-          // child: start ? const Center(
-          //   child: Icon(Icons.check, size:  200, color: Colors.white,),
-          // ) : null,
+            ) : null,          
           ),
       )
     );
