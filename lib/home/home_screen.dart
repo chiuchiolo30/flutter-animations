@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations/animations/success_animation.dart';
+import 'package:flutter_animations/animations/animations.dart';
 
 
 class MyHomeScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           children: <Widget>[
             MaterialButton(
               color: Colors.blue,
-              child: const Text('Success animation', style: TextStyle(color: Colors.white),),
+              child: const Text('Success', style: TextStyle(color: Colors.white),),
               onPressed: () {
                 Navigator.of(context).push(
                   PageRouteBuilder(
@@ -51,7 +51,14 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                     )
                   );
               },
-            )
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              child: const Text('Downloading', style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DownloadingAnimation()));
+              },
+            ),
           ],
         ),
       ),
