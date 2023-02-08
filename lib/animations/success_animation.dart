@@ -33,7 +33,7 @@ class _SuccessAnimationState extends State<SuccessAnimation> {
           width: MediaQuery.of(context).size.longestSide * 2,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.green[800]
+            color: Colors.greenAccent[700]
           ),
           child: start ? TweenAnimationBuilder(
             tween: Tween(begin: 0.0, end: 1.0),
