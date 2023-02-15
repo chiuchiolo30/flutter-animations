@@ -80,6 +80,13 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             ),
             MaterialButton(
               color: Colors.blue,
+              child: const Text('Success 3', style: TextStyle(color: Colors.white),),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const Success3Animation()));
+              },
+            ),
+            MaterialButton(
+              color: Colors.blue,
               child: const Text('Downloading', style: TextStyle(color: Colors.white),),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DownloadingAnimation()));
