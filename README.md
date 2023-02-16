@@ -14,11 +14,13 @@
     </td>
    <td>
       <img src="./screenshot/03.gif" alt="Search-Light" width="200"/>
-    </td>
-   <td>
+    </td>   
+  </tr>
+  <tr>
+    <td>
       <img src="./screenshot/04.gif" alt="Search-Light" width="200"/>
     </td>
-  </tr>
+   </tr>
 </table>
 
 # Ejecutar en desarrollo
