@@ -14,7 +14,7 @@ class Success3Animation extends StatefulWidget {
 
 class _Success3AnimationState extends State<Success3Animation> with SingleTickerProviderStateMixin {
 
-  late AnimationController _animationController;
+  late AnimationController? _animationController;
 
 
   final h = 40.0;
@@ -28,18 +28,13 @@ class _Success3AnimationState extends State<Success3Animation> with SingleTicker
   void initState() {
 
     _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 2000));
-    Future.delayed(const Duration(milliseconds: 700), () => _animationController.forward());
-    _animationController.addStatusListener((status) { 
-      if (status == AnimationStatus.dismissed && completed) {
-        
-      }
-    });
+    Future.delayed(const Duration(milliseconds: 700), () => _animationController!.forward());
     super.initState();
   } 
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController!.dispose();
     super.dispose();
   }
 
@@ -55,20 +50,20 @@ class _Success3AnimationState extends State<Success3Animation> with SingleTicker
          
           Align(
             child: AnimatedBuilder(
-              animation: _animationController,
+              animation: _animationController!,
               builder: (context, child) {
                 
                 double widthc1   = width;
                 double widthc2   = 0.0001;
                 double minHeight = h;
 
-                if (_animationController.value == 1.0) {
+                if (_animationController!.value == 1.0) {
                   widthc1 = 60.0;
                   minHeight = 60;
                 }
        
-                if (_animationController.status == AnimationStatus.forward) {
-                  widthc2 = width * _animationController.value;
+                if (_animationController!.status == AnimationStatus.forward) {
+                  widthc2 = width * _animationController!.value;
                 } 
 
                 return ClipRRect(
@@ -84,25 +79,31 @@ class _Success3AnimationState extends State<Success3Animation> with SingleTicker
                     alignment:Alignment.topLeft,
                     height: minHeight,
                     width:  widthc1,
-                    decoration: BoxDecoration(color: Colors.blue.withOpacity( 0.5)),
+                    decoration: BoxDecoration(color:  Colors.blue.withOpacity( 0.5)),
                     duration: const Duration(milliseconds: 1000),
-                    child: Container(
-                      decoration: BoxDecoration( color: completed ? Colors.greenAccent[700] : Colors.blue),
-                      height: completed   ?  widthc1 : null,
-                      width:  !completed  ?  widthc2 : widthc1,
-                      child:  completed   ? TweenAnimationBuilder<double>(
-                        tween: Tween(begin: 0.0, end: 1.0),
-                        curve: Curves.elasticInOut,
-                        builder: (BuildContext context, value, Widget? child) { 
-                          return Transform.scale(
-                            scale: value,
-                            child: child
-                          );
-                         },
-                        
-                        duration: const Duration(milliseconds: 600),
-                        child: const Icon(Icons.check, color: Colors.white, size: 40,)
-                      ) : null,
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration( color: completed ? Colors.greenAccent[700] : Colors.blue),
+                          height: completed   ?  widthc1 : null,
+                          width:  !completed  ?  widthc2 : widthc1,
+                          child:  completed   ? TweenAnimationBuilder<double>(
+                            tween: Tween(begin: 0.0, end: 1.0),
+                            curve: Curves.elasticInOut,
+                            builder: (BuildContext context, value, Widget? child) { 
+                              return Transform.scale(
+                                scale: value,
+                                child: child
+                              );
+                             },
+                            
+                            duration: const Duration(milliseconds: 600),
+                            child: const Icon(Icons.check, color: Colors.white, size: 40,)
+                          ) : null,
+                        ),
+                        if(!completed)
+                        const Center(child: Text('Enviar', style: TextStyle( fontSize: 16.0),))
+                      ],
                     ),
                   ),
                 );
